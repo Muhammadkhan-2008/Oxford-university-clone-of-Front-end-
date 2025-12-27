@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>University of Oxford - Landing Page Clone</title>
+  <style>
+    :root {
+      --oxford-blue: #002147;
+      --oxford-blue-dark: #001630;
+      --oxford-light: #f4f6f8;
+      --oxford-gold: #c3a351;
+      --oxford-slate: #3d4c5c;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: var(--oxford-blue-dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--oxford-blue);
+      color: var(--white);
+    }
+
+    .utility-bar {
+      background: rgba(0, 0, 0, 0.18);
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+    }
+
+    .utility-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .utility-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0 1.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .logo-mark {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      background: var(--oxford-gold);
+      display: grid;
+      place-items: center;
+      color: var(--oxford-blue);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      font-weight: 600;
+    }
+
+    .search {
+      background: var(--white);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--oxford-blue-dark);
+      min-width: 200px;
+    }
+
+    .search input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(120deg, rgba(0, 33, 71, 0.92), rgba(0, 33, 71, 0.78)),
+        url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80")
+          center/cover;
+      color: var(--white);
+      padding: 5rem 0 6rem;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--oxford-gold);
+      color: var(--oxford-blue);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: var(--white);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      padding: 1.8rem;
+      color: var(--oxford-blue-dark);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .hero-card li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+    }
+
+    .hero-card span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--oxford-gold);
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--oxford-blue);
+    }
+
+    .section-title p {
+      max-width: 520px;
+      color: var(--oxford-slate);
+    }
+
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: var(--oxford-light);
+      padding: 1.6rem;
+      border-radius: 16px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--oxford-blue);
+    }
+
+    .card .tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--oxford-gold);
+    }
+
+    .card p {
+      color: var(--oxford-slate);
+    }
+
+    .highlight {
+      background: linear-gradient(130deg, #ffffff, #edf1f6);
+      border: 1px solid #e0e6ed;
+    }
+
+    .stats {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      text-align: center;
+    }
+
+    .stat {
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid #e4e9f0;
+    }
+
+    .stat h3 {
+      font-size: 2rem;
+      color: var(--oxford-blue);
+    }
+
+    .stat p {
+      color: var(--oxford-slate);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      background: var(--oxford-blue);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: center;
+    }
+
+    .cta button {
+      border: none;
+      background: var(--oxford-gold);
+      color: var(--oxford-blue);
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--oxford-blue-dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 3rem 0 2rem;
+    }
+
+    footer .footer-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-bottom: 2rem;
+    }
+
+    footer h4 {
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    footer ul {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .back-to-top {
+      background: var(--oxford-gold);
+      color: var(--oxford-blue);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 24px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 820px) {
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .search {
+        width: 100%;
+      }
+
+      .hero {
+        padding: 4rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="utility-bar">
+      <div class="container">
+        <span>Current members of the University: staff &amp; students</span>
+        <div class="utility-links">
+          <a href="#">Staff</a>
+          <a href="#">Students</a>
+          <a href="#">Alumni</a>
+          <a href="#">Local community</a>
+        </div>
+      </div>
+    </div>
+    <div class="container nav-bar">
+      <div class="logo">
+        <div class="logo-mark">OX</div>
+        <div>
+          <div>University of Oxford</div>
+          <small>Est. 1096</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#study">Study</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#news">News &amp; Events</a></li>
+          <li><a href="#colleges">Colleges</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+      <div class="search">
+        <span>🔍</span>
+        <input type="text" placeholder="Search Oxford..." />
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div>
+        <p class="tag">Discover Oxford</p>
+        <h1>Shaping the future through world-leading research and education.</h1>
+        <p>
+          Explore undergraduate and postgraduate study options, open days, and how Oxford
+          addresses global challenges through innovation and collaboration.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#study">Find a course →</a>
+          <a class="btn btn-secondary" href="#news">Latest updates</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>At a glance</h3>
+        <ul>
+          <li><span></span> 45+ Colleges and Halls</li>
+          <li><span></span> 1000+ years of scholarly excellence</li>
+          <li><span></span> 350+ Graduate degree programmes</li>
+          <li><span></span> 180+ Research centres &amp; institutes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="study">
+    <div class="container">
+      <div class="section-title">
+        <h2>Study at Oxford</h2>
+        <p>
+          Discover an academic experience built on tutorial teaching, close-knit college
+          communities, and a global network of scholars.
+        </p>
+      </div>
+      <div class="cards">
+        <article class="card highlight">
+          <span class="tag">Undergraduate</span>
+          <h3>Courses and admissions</h3>
+          <p>Explore subject guides, entry requirements, and visit opportunities.</p>
+          <a href="#">Undergraduate prospectus →</a>
+        </article>
+        <article class="card">
+          <span class="tag">Graduate</span>
+          <h3>Master's &amp; DPhil</h3>
+          <p>Find taught and research programmes with world-class supervision.</p>
+          <a href="#">Graduate admissions →</a>
+        </article>
+        <article class="card">
+          <span class="tag">International</span>
+          <h3>Global students</h3>
+          <p>Guidance on visas, scholarships, and life at Oxford for overseas students.</p>
+          <a href="#">International guide →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" style="background: var(--oxford-light)">
+    <div class="container">
+      <div class="section-title">
+        <h2>Research &amp; innovation</h2>
+        <p>
+          Oxford researchers tackle some of the world's toughest problems, from climate
+          resilience to ethical AI and global health.
+        </p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Spotlight</span>
+          <h3>AI for humanity</h3>
+          <p>Interdisciplinary teams develop responsible AI frameworks and tools.</p>
+          <a href="#">Explore the initiative →</a>
+        </article>
+        <article class="card highlight">
+          <span class="tag">Impact</span>
+          <h3>Global health</h3>
+          <p>Partnerships with hospitals and NGOs accelerate medical breakthroughs.</p>
+          <a href="#">Health innovation →</a>
+        </article>
+        <article class="card">
+          <span class="tag">Collaboration</span>
+          <h3>Industry partners</h3>
+          <p>Co-create solutions with Oxford Science Enterprises and spinouts.</p>
+          <a href="#">Partnerships →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="container">
+      <div class="section-title">
+        <h2>News &amp; events</h2>
+        <p>
+          Stay up to date with Oxford's latest announcements, public lectures, and cultural
+          programmes open to all.
+        </p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">News</span>
+          <h3>Oxford tops global sustainability rankings</h3>
+          <p>New initiatives drive carbon reduction and biodiversity on campus.</p>
+          <a href="#">Read story →</a>
+        </article>
+        <article class="card">
+          <span class="tag">Event</span>
+          <h3>Open day: meet the colleges</h3>
+          <p>Tour colleges, speak with tutors, and explore accommodation options.</p>
+          <a href="#">Register now →</a>
+        </article>
+        <article class="card highlight">
+          <span class="tag">Lecture</span>
+          <h3>Public lecture series: Future of democracy</h3>
+          <p>Join leading scholars and alumni for thought-provoking discussions.</p>
+          <a href="#">View programme →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="colleges" style="background: var(--oxford-light)">
+    <div class="container">
+      <div class="section-title">
+        <h2>Colleges &amp; community</h2>
+        <p>
+          Oxford is made up of a unique federation of colleges, each with its own history,
+          accommodation, and student support network.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <h3>45</h3>
+          <p>Colleges and halls of residence</p>
+        </div>
+        <div class="stat">
+          <h3>24k+</h3>
+          <p>Students from 160+ countries</p>
+        </div>
+        <div class="stat">
+          <h3>100+</h3>
+          <p>Libraries and collections</p>
+        </div>
+        <div class="stat">
+          <h3>1,000+</h3>
+          <p>Years of history</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Explore Oxford University</h2>
+          <p>
+            Learn about our mission, people, and commitment to making the world a better place.
+            Discover how you can visit, collaborate, or join our community.
+          </p>
+        </div>
+        <div>
+          <button type="button" id="open-modal">Plan your visit</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>About Oxford</h4>
+          <ul>
+            <li><a href="#">Facts &amp; figures</a></li>
+            <li><a href="#">Governance</a></li>
+            <li><a href="#">Oxford people</a></li>
+            <li><a href="#">Equality &amp; diversity</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Admissions</h4>
+          <ul>
+            <li><a href="#">Undergraduate</a></li>
+            <li><a href="#">Graduate</a></li>
+            <li><a href="#">Continuing education</a></li>
+            <li><a href="#">Open days</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Giving to Oxford</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Stay updated</h4>
+          <p>Sign up for alerts and monthly highlights.</p>
+          <button class="back-to-top" type="button" id="subscribe">Subscribe</button>
+        </div>
+      </div>
+      <button class="back-to-top" type="button" id="backToTop">Back to top ↑</button>
+    </div>
+  </footer>
+
+  <script>
+    const backToTop = document.getElementById("backToTop");
+    const subscribeButton = document.getElementById("subscribe");
+    const openModalButton = document.getElementById("open-modal");
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    subscribeButton.addEventListener("click", () => {
+      subscribeButton.textContent = "Subscribed ✓";
+      subscribeButton.disabled = true;
+    });
+
+    openModalButton.addEventListener("click", () => {
+      alert("Thank you for your interest! Campus tour bookings open soon.");
+    });
+  </script>
+</body>
+</html>
